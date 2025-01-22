@@ -1,0 +1,76 @@
+DROP DATABASE GYMTRACK;
+
+CREATE DATABASE GYMTRACK;
+
+USE GYMTRACK;
+
+CREATE TABLE Alunos (
+Aluno_Id INT AUTO_INCREMENT NOT NULL,
+Aluno_Nome VARCHAR(100),
+Aluno_Idade INT,
+Aluno_Sexo VARCHAR(10),
+Aluno_Endereco VARCHAR(100),
+Aluno_Cpf VARCHAR(15),
+Aluno_Rg VARCHAR(11),
+Aluno_Tel VARCHAR(20),
+Aluno_Data_Nascimento DATE,
+PRIMARY KEY(Aluno_Id)
+);
+
+CREATE TABLE Funcionarios (
+Func_Id INT AUTO_INCREMENT NOT NULL,
+Func_Nome VARCHAR(100),
+Func_Idade INT,
+Func_Sexo VARCHAR(10),
+Func_Endereco VARCHAR(100),
+Func_Cpf VARCHAR(15),
+Func_Rg VARCHAR(11),
+Func_Tel VARCHAR(20),
+Func_Data_Nascimento DATE,
+PRIMARY KEY(Func_Id)
+);
+
+CREATE TABLE Modalidade (
+Modal_Id INT AUTO_INCREMENT NOT NULL,
+Modal_Nome VARCHAR(50),
+Modal_Desc VARCHAR(100),
+Modal_Preco FLOAT,
+PRIMARY KEY(Modal_Id)
+);
+
+CREATE TABLE Plano (
+Plano_Id INT AUTO_INCREMENT NOT NULL,
+Plano_Preco FLOAT,
+Plano_Desc VARCHAR(100),
+Quant_Meses INT,
+PRIMARY KEY(Plano_Id)
+);
+
+CREATE TABLE Avaliacao (
+Aval_Id INT AUTO_INCREMENT NOT NULL,
+Aval_Peso FLOAT,
+Aval_Massa_Muscular FLOAT,
+Aval_Data_Avaliacao DATE,
+Aval_Triciptal FLOAT,
+Aval_Peitoral FLOAT,
+Aval_BracoD FLOAT,
+Aval_BracoE FLOAT,
+Aval_Perna FLOAT,
+Aval_Abdomen FLOAT,
+Aval_Cintura FLOAT,
+Aval_Quadril FLOAT,
+PRIMARY KEY(Aval_Id),
+Aluno_Id INT,
+FOREIGN KEY(Aluno_Id) REFERENCES Alunos(Aluno_Id)
+);
+
+CREATE TABLE Status (
+Status_Id INT AUTO_INCREMENT NOT NULL,
+Status_Situacao VARCHAR(50),
+PRIMARY KEY(Status_Id),
+Aluno_Id INT,
+Func_Id INT,
+FOREIGN KEY(Aluno_Id) REFERENCES Alunos(Aluno_Id),
+FOREIGN KEY(Func_Id) REFERENCES Funcionarios(Func_Id)
+);
+
