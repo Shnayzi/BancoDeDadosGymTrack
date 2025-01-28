@@ -42,7 +42,7 @@ CREATE TABLE Plano (
 Plano_Id INT AUTO_INCREMENT NOT NULL,
 Plano_Preco FLOAT,
 Plano_Desc VARCHAR(100),
-Quant_Meses INT,
+Plano_Duracao INT,
 PRIMARY KEY(Plano_Id)
 );
 
@@ -74,3 +74,26 @@ FOREIGN KEY(Aluno_Id) REFERENCES Alunos(Aluno_Id),
 FOREIGN KEY(Func_Id) REFERENCES Funcionarios(Func_Id)
 );
 
+CREATE TABLE Pagamentos (
+Pag_Id INT AUTO_INCREMENT NOT NULL,
+Pag_TipoDePagamento VARCHAR(50),
+Pag_Valor FLOAT,
+Pag_DataDoPagamento DATE,
+Pag_FormaDePagamento VARHCAR(50)
+);
+
+CREATE TABLE Despesas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    descricao VARCHAR(255) NOT NULL,
+    valor DECIMAL(10, 2) NOT NULL,
+    data_despesa DATE DEFAULT CURRENT_DATE,
+    categoria ENUM('Agua', 'Luz', 'Aluguel', 'Manutencao', 'Outros') NOT NULL
+);
+
+CREATE TABLE Receitas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    descricao VARCHAR(255) NOT NULL,
+    valor DECIMAL(10, 2) NOT NULL,
+    data_receita DATE DEFAULT CURRENT_DATE,
+    categoria ENUM('Mensalidade', 'Venda de Produtos', 'Outros') NOT NULL
+);
